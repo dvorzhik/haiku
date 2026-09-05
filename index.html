@@ -219,18 +219,58 @@
       filter: grayscale(0%);
     }
 
-    /* Telegram Widget контейнер */
-    .tg-widget-wrap {
-      margin-top: 10px;
-      width: 100%;
-      overflow: hidden;
+    /* Строка метаинформации: слева "прочитать больше", справа дата */
+    .haiku-meta-row {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-top: 4px;
     }
 
-    /* Встроенный пост блога (Blogger Embed) */
+    .read-more-btn {
+      background: none;
+      border: none;
+      font-family: inherit;
+      font-size: inherit;
+      color: var(--accent);
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .read-more-btn:hover {
+      opacity: 0.75;
+    }
+
+    .haiku-date-link {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .haiku-date-link:hover {
+      color: var(--accent);
+    }
+
+    /* Выпадающий блок с текстом блога/телеграма */
+    .expandable-content {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--line-color);
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    .expandable-content.active {
+      display: block;
+    }
+
+    /* Встроенный пост блога */
     .blog-card-embed {
-      margin-top: 10px;
       background: #fafafa;
       border: 1px solid var(--line-color);
       border-radius: 8px;
@@ -311,22 +351,11 @@
       color: var(--accent);
     }
 
-    .haiku-meta {
+    .tg-widget-wrap {
+      width: 100%;
+      overflow: hidden;
       display: flex;
-      justify-content: flex-end;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-    }
-
-    .haiku-meta a {
-      color: inherit;
-      text-decoration: underline;
-      transition: color 0.2s ease;
-    }
-
-    .haiku-meta a:hover {
-      color: var(--accent);
+      justify-content: center;
     }
 
     /* Подвал */
@@ -525,11 +554,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Гром с грозой в окне,.jpg" alt="Гром с грозой в окне" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/103" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/103" target="_blank" class="haiku-date-link">январь 2026</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/103" target="_blank">январь 2026</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/103" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -547,11 +579,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Что есть ПЧМ, ЧП, Жмот, СОВА.jpg" alt="Товарищ" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/93" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/93" target="_blank" class="haiku-date-link">октябрь 2025</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/93" target="_blank">октябрь 2025</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/93" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -569,11 +604,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Есть флаг с русалкой..jpg" alt="Шум моря" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/67" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/67" target="_blank" class="haiku-date-link">август 2025</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/67" target="_blank">август 2025</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/67" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -591,11 +629,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Открыть телефон.jpg" alt="Доброе утро" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/29" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/29" target="_blank" class="haiku-date-link">июль 2025</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/29" target="_blank">июль 2025</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/29" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -613,11 +654,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Розы замёрзли..jpg" alt="Розы замёрзли" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/154" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/154" target="_blank" class="haiku-date-link">июль 2025</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/154" target="_blank">июль 2025</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/154" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -635,8 +679,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Боль, костыли, гипс..jpg" alt="Научусь покою" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2025</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2025</span>
           </div>
         </div>
       </details>
@@ -654,11 +699,14 @@
           <div class="haiku-image-wrap">
             <img src="images/Смотрю на смартфон.png" alt="Пашка нашелся" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/13" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/s/dvorzhiki/13" target="_blank" class="haiku-date-link">май 2025</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/s/dvorzhiki/13" target="_blank">май 2025</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/13" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -676,8 +724,9 @@
           <div class="haiku-image-wrap">
             <img src="images/В праздник свободы.jpg" alt="Мир на Голанах" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>апрель 2025</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">апрель 2025</span>
           </div>
         </div>
       </details>
@@ -695,8 +744,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Весенний ветер.jpg" alt="Дочка вернулась" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>март 2025</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">март 2025</span>
           </div>
         </div>
       </details>
@@ -714,8 +764,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Ахзив. Шабат. И.jpg" alt="Ахзив" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>ноябрь 2024</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">ноябрь 2024</span>
           </div>
         </div>
       </details>
@@ -733,8 +784,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Клетки, фигуры....jpg" alt="I love this chess" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2024</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2024</span>
           </div>
         </div>
       </details>
@@ -752,8 +804,9 @@
           <div class="haiku-image-wrap">
             <img src="images/В центре Европы.jpg" alt="Хор лягушачий" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2024</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2024</span>
           </div>
         </div>
       </details>
@@ -771,35 +824,36 @@
           <div class="haiku-image-wrap">
             <img src="images/Ах как же хорош.jpg" alt="Caffe al bar" loading="lazy">
           </div>
-
-          <div class="blog-card-embed">
-            <div class="blog-card-header">
-              <span class="blog-badge">Blogger</span>
-              <span class="blog-date-badge">30 мая 2015</span>
-            </div>
-            <h4 class="blog-card-title">Всемирный день кофе</h4>
-            <div class="blog-card-text">
-              <p>Люблю рассказывать эту историю. А сегодня — <a href="http://daycoffee.su/" target="_blank">во всемирный день кофе</a> — ее можно рассказать и еще раз.</p>
-              <p>Я люблю Италию.<br>А в Италии любят кофе.<br>И хорошо умеют его готовить. Не исключено, что лучше всех в мире.<br>Во всяком случае, лучший кофе в своей жизни я пил именно в Италии.<br>Кстати, там не нужно говорить «эспрессо» — достаточно просто сказать «caffe».<br>И это правильно! :-)</p>
-              <p>Завтракая в гостинице, я выпил две чашки «caffe» (я не мог ограничиться одной, поскольку в этот день мы уезжали, а он там был просто чудесный).<br>И поэтому, когда в 11 часов дня я зашел в бар, чтобы переждать очередной этап «шоппинга», я не придумал ничего умнее, чем попросить «американо» (я почему-то подумал, что третий крепкий кофе будет лишним).</p>
-              <p>Девушка-бармен, сразу утратив всякую приветливость, кивнула на пустой столик и отвернулась.<br>Я сел за стол и через некоторое время получил вот это…</p>
-              
-              <div style="text-align: center; margin: 16px 0;">
-                <img src="images/Ах как же хорош.jpg" alt="Всемирный день кофе" style="max-width: 100%; border-radius: 4px;">
-              </div>
-
-              <p>Мне принесли чудесный эспрессо и рядом поставили горячую воду.<br>Смысл в том, что если хочешь, ты можешь портить кофе как тебе угодно, но не нужно просить делать это бариста :-)</p>
-              <p>Я же уже говорил, что я люблю Италию!<br>С днем кофе, друзья!</p>
-            </div>
-            <div class="blog-card-footer">
-              <a href="https://dvorzhik.blogspot.com/2015/05/blog-post.html" target="_blank">
-                Читать оригинал в блоге →
-              </a>
-            </div>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://dvorzhik.blogspot.com/2015/05/blog-post.html" target="_blank" class="haiku-date-link">июнь 2024</a>
           </div>
+          <div class="expandable-content">
+            <div class="blog-card-embed">
+              <div class="blog-card-header">
+                <span class="blog-badge">Blogger</span>
+                <span class="blog-date-badge">30 мая 2015</span>
+              </div>
+              <h4 class="blog-card-title">Всемирный день кофе</h4>
+              <div class="blog-card-text">
+                <p>Люблю рассказывать эту историю. А сегодня — <a href="http://daycoffee.su/" target="_blank">во всемирный день кофе</a> — ее можно рассказать и еще раз.</p>
+                <p>Я люблю Италию.<br>А в Италии любят кофе.<br>И хорошо умеют его готовить. Не исключено, что лучше всех в мире.<br>Во всяком случае, лучший кофе в своей жизни я пил именно в Италии.<br>Кстати, там не нужно говорить «эспрессо» — достаточно просто сказать «caffe».<br>И это правильно! :-)</p>
+                <p>Завтракая в гостинице, я выпил две чашки «caffe» (я не мог ограничиться одной, поскольку в этот день мы уезжали, а он там был просто чудесный).<br>И поэтому, когда в 11 часов дня я зашел в бар, чтобы переждать очередной этап «шоппинга», я не придумал ничего умнее, чем попросить «американо» (я почему-то подумал, что третий крепкий кофе будет лишним).</p>
+                <p>Девушка-бармен, сразу утратив всякую приветливость, кивнула на пустой столик и отвернулась.<br>Я сел за стол и через некоторое время получил вот это…</p>
+                
+                <div style="text-align: center; margin: 16px 0;">
+                  <img src="images/Ах как же хорош.jpg" alt="Всемирный день кофе" style="max-width: 100%; border-radius: 4px;">
+                </div>
 
-          <div class="haiku-meta">
-            <a href="https://dvorzhik.blogspot.com/2015/05/blog-post.html" target="_blank">июнь 2024</a>
+                <p>Мне принесли чудесный эспрессо и рядом поставили горячую воду.<br>Смысл в том, что если хочешь, ты можешь портить кофе как тебе угодно, но не нужно просить делать это бариста :-)</p>
+                <p>Я же уже говорил, что я люблю Италию!<br>С днем кофе, друзья!</p>
+              </div>
+              <div class="blog-card-footer">
+                <a href="https://dvorzhik.blogspot.com/2015/05/blog-post.html" target="_blank">
+                  Читать оригинал в блоге →
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </details>
@@ -817,8 +871,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Под солнцем Рима.jpg" alt="Под солнцем Рима" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2024</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2024</span>
           </div>
         </div>
       </details>
@@ -836,8 +891,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Длинный день счастья.jpg" alt="Шум водопада" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>октябрь 2023</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">октябрь 2023</span>
           </div>
         </div>
       </details>
@@ -855,8 +911,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Не буду грустить.jpg" alt="Осенний лист" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>октябрь 2023</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">октябрь 2023</span>
           </div>
         </div>
       </details>
@@ -874,8 +931,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Улыбаюсь. Ведь.jpg" alt="Озеро Комо" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>апрель 2023</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">апрель 2023</span>
           </div>
         </div>
       </details>
@@ -893,8 +951,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Небо. Рапс. Ветер.jpg" alt="Камарг" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>апрель 2023</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">апрель 2023</span>
           </div>
         </div>
       </details>
@@ -912,8 +971,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Трамвайный звонок.jpg" alt="Трамвайный звонок" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>апрель 2023</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">апрель 2023</span>
           </div>
         </div>
       </details>
@@ -931,8 +991,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Бреду по морю.jpg" alt="Шемеш шекет ям" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>сентябрь 2022</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">сентябрь 2022</span>
           </div>
         </div>
       </details>
@@ -951,8 +1012,9 @@
             <img src="images/в безумном мире 1.jpg" alt="Шемеш шекет ям 1" loading="lazy">
             <img src="images/в безумном мире 2.jpg" alt="Шемеш шекет ям 2" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>март 2022</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">март 2022</span>
           </div>
         </div>
       </details>
@@ -970,11 +1032,14 @@
           <div class="haiku-image-wrap">
             <img src="images/закат отцветет.jpg" alt="Трудно быть богом" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/16" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/16" target="_blank" class="haiku-date-link">март 2022</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/16" target="_blank">март 2022</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/16" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -992,8 +1057,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Утром на заре.jpg" alt="Апотропей" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>август 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">август 2021</span>
           </div>
         </div>
       </details>
@@ -1011,8 +1077,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Встречаю рассвет.jpg" alt="Счастье так просто" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>август 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">август 2021</span>
           </div>
         </div>
       </details>
@@ -1030,8 +1097,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Подставлю ладонь.jpg" alt="Миг звездопада" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>август 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">август 2021</span>
           </div>
         </div>
       </details>
@@ -1049,8 +1117,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Поплавок в воде.jpg" alt="Летнее утро" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2021</span>
           </div>
         </div>
       </details>
@@ -1068,8 +1137,9 @@
           <div class="haiku-image-wrap">
             <img src="images/В память об отце.jpg" alt="Корабль бумажный" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>апрель 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">апрель 2021</span>
           </div>
         </div>
       </details>
@@ -1087,8 +1157,9 @@
           <div class="haiku-image-wrap">
             <img src="images/старинный китель.jpg" alt="Старинный китель" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>февраль 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">февраль 2021</span>
           </div>
         </div>
       </details>
@@ -1107,8 +1178,9 @@
             <img src="images/Зимний день ярок 1.jpg" alt="Чернобел 1" loading="lazy">
             <img src="images/Зимний день ярок 2.jpg" alt="Чернобел 2" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>январь 2021</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">январь 2021</span>
           </div>
         </div>
       </details>
@@ -1126,8 +1198,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Антитела G - плюс.jpg" alt="Антитела" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>декабрь 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">декабрь 2020</span>
           </div>
         </div>
       </details>
@@ -1146,8 +1219,9 @@
             <img src="images/в погоде, в людях 1.jpg" alt="Переменчивость 1" loading="lazy">
             <img src="images/в погоде, в людях 2.jpg" alt="Переменчивость 2" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>сентябрь 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">сентябрь 2020</span>
           </div>
         </div>
       </details>
@@ -1165,8 +1239,9 @@
           <div class="haiku-image-wrap">
             <img src="images/во все времена.jpg" alt="Счастье быть отцом" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>сентябрь 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">сентябрь 2020</span>
           </div>
         </div>
       </details>
@@ -1184,31 +1259,32 @@
           <div class="haiku-image-wrap">
             <img src="images/вместо сотен слов.jpg" alt="В трех строках хокку" loading="lazy">
           </div>
-
-          <div class="blog-card-embed">
-            <div class="blog-card-header">
-              <span class="blog-badge">Blogger</span>
-              <span class="blog-date-badge">4 сентября 2020</span>
-            </div>
-            <h4 class="blog-card-title">5-7-5, или Откуда у хлопца японская грусть</h4>
-            <div class="blog-card-text">
-              <p>Внимательные читатели могли заметить, что в этом — не самом простом 2020 году — у меня на странице появились некие трехстрочные публикации с хештегами #хокку #хайку #俳句.</p>
-              <p>Я очень полюбил эту возможность выразить свою мысль, тревогу, ощущение не тысячей слов, а всего 17 слогами. Это и просто, и сложно одновременно.</p>
-              <blockquote class="blog-embed-quote">
-                Вместо сотен слов<br>
-                Изложи свои мысли<br>
-                В трех строках хокку.
-              </blockquote>
-            </div>
-            <div class="blog-card-footer">
-              <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank">
-                Читать полную статью в блоге →
-              </a>
-            </div>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank" class="haiku-date-link">июнь 2020</a>
           </div>
-
-          <div class="haiku-meta">
-            <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank">июнь 2020</a>
+          <div class="expandable-content">
+            <div class="blog-card-embed">
+              <div class="blog-card-header">
+                <span class="blog-badge">Blogger</span>
+                <span class="blog-date-badge">4 сентября 2020</span>
+              </div>
+              <h4 class="blog-card-title">5-7-5, или Откуда у хлопца японская грусть</h4>
+              <div class="blog-card-text">
+                <p>Внимательные читатели могли заметить, что в этом — не самом простом 2020 году — у меня на странице появились некие трехстрочные публикации с хештегами #хокку #хайку #俳句.</p>
+                <p>Я очень полюбил эту возможность выразить свою мысль, тревогу, ощущение не тысячей слов, а всего 17 слогами. Это и просто, и сложно одновременно.</p>
+                <blockquote class="blog-embed-quote">
+                  Вместо сотен слов<br>
+                  Изложи свои мысли<br>
+                  В трех строках хокку.
+                </blockquote>
+              </div>
+              <div class="blog-card-footer">
+                <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank">
+                  Читать полную статью в блоге →
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </details>
@@ -1226,11 +1302,14 @@
           <div class="haiku-image-wrap">
             <img src="images/уйдет командор.jpg" alt="Мальчик со шпагой" loading="lazy">
           </div>
-          <div class="tg-widget-wrap">
-            <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/71" data-width="100%"></script>
+          <div class="haiku-meta-row">
+            <button type="button" class="read-more-btn" onclick="toggleExpand(this)">Прочитать больше 17 слогов</button>
+            <a href="https://t.me/dvorzhiki/71" target="_blank" class="haiku-date-link">сентябрь 2020</a>
           </div>
-          <div class="haiku-meta">
-            <a href="https://t.me/dvorzhiki/71" target="_blank">сентябрь 2020</a>
+          <div class="expandable-content">
+            <div class="tg-widget-wrap">
+              <script async src="https://telegram.org/js/telegram-widget.js?22" data-telegram-post="dvorzhiki/71" data-width="100%"></script>
+            </div>
           </div>
         </div>
       </details>
@@ -1248,8 +1327,9 @@
           <div class="haiku-image-wrap">
             <img src="images/Шаг в неизвестность.jpg" alt="Купол раскрылся" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>август 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">август 2020</span>
           </div>
         </div>
       </details>
@@ -1268,8 +1348,9 @@
             <img src="images/волшебный закат 1.jpg" alt="Писк комариный 1" loading="lazy">
             <img src="images/волшебный закат 2.jpg" alt="Писк комариный 2" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июль 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июль 2020</span>
           </div>
         </div>
       </details>
@@ -1287,8 +1368,9 @@
           <div class="haiku-image-wrap">
             <img src="images/солнце и ветер.jpg" alt="Одуванчики" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>июнь 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">июнь 2020</span>
           </div>
         </div>
       </details>
@@ -1307,8 +1389,9 @@
             <img src="images/погаснут огни 1.jpg" alt="Сверчок светофора 1" loading="lazy">
             <img src="images/погаснут огни 2.jpg" alt="Сверчок светофора 2" loading="lazy">
           </div>
-          <div class="haiku-meta">
-            <span>май 2020</span>
+          <div class="haiku-meta-row">
+            <span></span>
+            <span class="haiku-date-link">май 2020</span>
           </div>
         </div>
       </details>
@@ -1322,15 +1405,33 @@
   </main>
 
   <script>
+    // Функция для переключения разворачивания текста статьи/телеграма по клику на "Прочитать больше 17 слогов"
+    function toggleExpand(btn) {
+      const detailsDiv = btn.closest('.haiku-details');
+      const content = detailsDiv.querySelector('.expandable-content');
+      if (content) {
+        content.classList.toggle('active');
+        if (content.classList.contains('active')) {
+          btn.textContent = 'Свернуть текст';
+        } else {
+          btn.textContent = 'Прочитать больше 17 слогов';
+        }
+      }
+    }
+
     // Аккордеон с плавной прокруткой открытого хокку к верху экрана
     const cards = document.querySelectorAll('.haiku-card');
     cards.forEach(card => {
       card.addEventListener('toggle', () => {
         if (card.open) {
-          // Закрываем другие карточки
+          // Закрываем другие карточки и сбрасываем их развернутые тексты
           cards.forEach(other => {
-            if (other !== card && other.open) {
+            if (other !== card) {
               other.open = false;
+              const exp = other.querySelector('.expandable-content');
+              const b = other.querySelector('.read-more-btn');
+              if (exp) exp.classList.remove('active');
+              if (b) b.textContent = 'Прочитать больше 17 слогов';
             }
           });
 
