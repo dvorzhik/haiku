@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Haiku — 5-7-5</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400&family=Yuji+Boku&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-main: #2b2b2b;
+      --text-muted: #8c8c8c;
+      --line-color: #eaeaea;
+      --accent: #b23a22; /* Японский традиционный кармин / enji */
+      --font-serif: "Noto Serif JP", "Georgia", "Times New Roman", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      font-weight: 300;
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 60px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 580px;
+    }
+
+    /* Заголовок */
+    header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .site-title {
+      font-size: 1.15rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .site-title a {
+      color: var(--text-main);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .site-title a:hover {
+      color: var(--accent);
+    }
+
+    .divider {
+      width: 30px;
+      height: 1px;
+      background: var(--text-main);
+      margin: 20px auto;
+      opacity: 0.3;
+    }
+
+    /* Список хокку */
+    .haiku-list {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .haiku-card {
+      border-bottom: 1px solid var(--line-color);
+      padding-bottom: 28px;
+      transition: border-color 0.3s;
+    }
+
+    /* Интерактивная шапка хокку */
+    .haiku-summary {
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      position: relative;
+      padding-right: 30px;
+    }
+
+    .haiku-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .haiku-text {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      transition: color 0.2s ease;
+    }
+
+    .haiku-card:hover .haiku-text {
+      color: #000000;
+    }
+
+    /* Минималистичный индикатор раскрытия */
+    .haiku-summary::after {
+      content: '+';
+      position: absolute;
+      right: 4px;
+      top: 0;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      font-weight: 300;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    details[open] .haiku-summary::after {
+      content: '—';
+      color: var(--accent);
+    }
+
+    /* Выпадающий контент */
+    .haiku-details {
+      padding-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .haiku-image-wrap {
+      width: 100%;
+      background-color: #fafafa;
+      line-height: 0;
+    }
+
+    .haiku-image-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: grayscale(15%);
+      transition: filter 0.4s ease;
+    }
+
+    .haiku-image-wrap img:hover {
+      filter: grayscale(0%);
+    }
+
+    .haiku-meta {
+      display: flex;
+      justify-content: flex-end;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .haiku-meta a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .haiku-meta a:hover {
+      color: var(--accent);
+    }
+
+    /* Подвал */
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+    }
+
+    .footer-tags {
+      margin-top: 6px;
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <header>
+      <h1 class="site-title">
+        <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank">
+          5-7-5, или Откуда у хлопца японская грусть
+        </a>
+      </h1>
+      <div class="divider"></div>
+    </header>
+
+    <div class="haiku-list">
+
+      <!-- 1 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Гром с грозой в окне,<br>
+            В доме залаял щенок —<br>
+            Первый день года.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-01.jpg" alt="Гром с грозой в окне" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/103" target="_blank">январь 2026</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 2 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Что есть ПЧМ, ЧП, Жмот, СОВА<br>
+            Улыбнувшись, объяснит<br>
+            Только "Товарищ"!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-02.jpg" alt="Товарищ" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/93" target="_blank">октябрь 2025</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 3 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Есть флаг с русалкой.<br>
+            Конституция — шесть слов.<br>
+            И гимн — шум моря!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-03.jpg" alt="Шум моря" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/67" target="_blank">август 2025</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Открыть телефон<br>
+            Улыбнувшись, прочитать —<br>
+            Доброе утро!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-04.jpg" alt="Доброе утро" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/29" target="_blank">июль 2025</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 5 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Розы замёрзли.<br>
+            Сможешь догнать троллейбус?<br>
+            Вызов на всю жизнь...
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-05.jpg" alt="Розы замёрзли" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/154" target="_blank">июль 2025</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 6 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Боль, костыли, гипс.<br>
+            Мир вновь тормозит мой бег.<br>
+            Научусь покою?
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-06.jpg" alt="Научусь покою" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2025</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 7 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Смотрю на смартфон<br>
+            Слезы с улыбкой смешались —<br>
+            Пашка нашелся...
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-07.jpg" alt="Пашка нашелся" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/s/dvorzhiki/13" target="_blank">май 2025</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 8 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            В праздник свободы<br>
+            Гордо цветут лютики —<br>
+            Мир на Голанах.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-08.jpg" alt="Мир на Голанах" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>апрель 2025</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 9 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Весенний ветер<br>
+            Распахнул двери детской<br>
+            Дочка вернулась.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-09.jpg" alt="Дочка вернулась" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>март 2025</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 10 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Ахзив. Шабат. И<br>
+            Четвертый день тишины.<br>
+            Бокер мецуян.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-10.jpg" alt="Ахзив" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>ноябрь 2024</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 11 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Клетки, фигуры...<br>
+            А сколько лет сражений!?<br>
+            I love this chess!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-11.jpg" alt="I love this chess" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2024</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 12 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            В центре Европы<br>
+            Пусть поразит вас ночной<br>
+            Хор лягушачий.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-12.jpg" alt="Хор лягушачий" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2024</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 13 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Ах как же хорош<br>
+            В стране четырех морей<br>
+            Мой "caffe al bar".
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-13.jpg" alt="Caffe al bar" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://dvorzhik.blogspot.com/2015/05/blog-post.html" target="_blank">июнь 2024</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 14 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Под солнцем Рима<br>
+            Укажет правильный путь<br>
+            Взгляд Беньямино.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-14.jpg" alt="Под солнцем Рима" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2024</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 15 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Длинный день счастья.<br>
+            А ночью приснится мне<br>
+            Шум водопада.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-15.jpg" alt="Шум водопада" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>октябрь 2023</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 16 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Не буду грустить,<br>
+            Хоть первый осенний лист<br>
+            Поплыл по воде.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-16.jpg" alt="Осенний лист" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>октябрь 2023</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 17 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Улыбаюсь. Ведь<br>
+            Звёзды озера Комо<br>
+            Подмигнули мне.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-17.jpg" alt="Озеро Комо" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>апрель 2023</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 18 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Небо. Рапс. Ветер.<br>
+            Разведен мост Ван Гога.<br>
+            Апрельский Камарг.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-18.jpg" alt="Камарг" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>апрель 2023</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 19 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Трамвайный звонок.<br>
+            Как защитить от него<br>
+            Сопящих рядом?
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-19.jpg" alt="Трамвайный звонок" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>апрель 2023</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 20 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Бреду по морю<br>
+            Без слов, стихов и рифм. Лишь<br>
+            Шемеш, шекет, ям.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-20.jpg" alt="Шемеш шекет ям" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>сентябрь 2022</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 21 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            В безумном мире<br>
+            Три разлуки сменил на<br>
+            Шемеш, шекет, ям.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-21.jpg" alt="Шемеш шекет ям" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>март 2022</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 22 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Закат отцветет,<br>
+            Волны погасят ветер —<br>
+            Трудно быть богом.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-22.jpg" alt="Трудно быть богом" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/16" target="_blank">март 2022</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 23 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Утром на заре<br>
+            В морском прибое найду<br>
+            Мой апотропей.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-23.jpg" alt="Апотропей" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>август 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 24 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Встречаю рассвет,<br>
+            Мама готовит завтрак —<br>
+            Счастье так просто...
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-24.jpg" alt="Счастье так просто" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>август 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 25 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Подставлю ладонь,<br>
+            Август — миг звездопада<br>
+            И сбудется мечт! )
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-25.jpg" alt="Миг звездопада" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>август 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 26 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Поплавок в воде,<br>
+            Комар лениво жужжит —<br>
+            Летнее утро.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-26.jpg" alt="Летнее утро" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 27 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            В память об отце<br>
+            Пущу весной по ручью<br>
+            Корабль бумажный.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-27.jpg" alt="Корабль бумажный" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>апрель 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 28 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Старинный китель<br>
+            Не даст сегодня надеть<br>
+            Мой "комок нервов" :-)
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-28.jpg" alt="Старинный китель" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>февраль 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 29 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Зимний день ярок,<br>
+            Но стоит скрыться солнцу<br>
+            Мир вновь чернобел.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-29.jpg" alt="Чернобел" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>январь 2021</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 30 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Антитела G — плюс<br>
+            Хотел порадоваться,<br>
+            Но, "чёрт побери"!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-30.jpg" alt="Антитела" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>декабрь 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 31 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            В погоде, в людях<br>
+            Всегда беспокоит нас<br>
+            Переменчивость.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-31.jpg" alt="Переменчивость" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>сентябрь 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 32 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Во все времена<br>
+            Ничего нет тревожней<br>
+            Счастья быть отцом.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-32.jpg" alt="Счастье быть отцом" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>сентябрь 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 33 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Вместо сотен слов<br>
+            Изложи свои мысли<br>
+            В трех строках хокку.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-33.jpg" alt="В трех строках хокку" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://dvorzhik.blogspot.com/2020/09/5-7-5.html" target="_blank">июнь 2020</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 34 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Уйдет Командор,<br>
+            Но никогда не умрет<br>
+            Мальчик со шпагой.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-34.jpg" alt="Мальчик со шпагой" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <a href="https://t.me/dvorzhiki/71" target="_blank">сентябрь 2020</a>
+          </div>
+        </div>
+      </details>
+
+      <!-- 35 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Шаг в неизвестность,<br>
+            Мир кувыркнулся, но вот —<br>
+            Купол раскрылся!
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-35.jpg" alt="Купол раскрылся" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>август 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 36 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Волшебный закат!<br>
+            Но вечный спутник его —<br>
+            Писк комариный...
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-36.jpg" alt="Писк комариный" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июль 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 37 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Солнце и ветер —<br>
+            Только о них мечтают<br>
+            Одуванчики...
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-37.jpg" alt="Одуванчики" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>июнь 2020</span>
+          </div>
+        </div>
+      </details>
+
+      <!-- 38 -->
+      <details class="haiku-card">
+        <summary class="haiku-summary">
+          <p class="haiku-text">
+            Погаснут огни.<br>
+            Лишь сверчок светофора<br>
+            Не даст мне уснуть.
+          </p>
+        </summary>
+        <div class="haiku-details">
+          <div class="haiku-image-wrap">
+            <img src="images/haiku-38.jpg" alt="Сверчок светофора" loading="lazy">
+          </div>
+          <div class="haiku-meta">
+            <span>май 2020</span>
+          </div>
+        </div>
+      </details>
+
+    </div>
+
+    <footer>
+      <p>© Aleksandr Dvorzhitckii</p>
+      <p class="footer-tags">#хокку #хайку #俳句 #5-7-5</p>
+    </footer>
+  </main>
+
+  <script>
+    // Аккордеон: при открытии карточки остальные закрываются
+    const cards = document.querySelectorAll('.haiku-card');
+    cards.forEach(card => {
+      card.addEventListener('toggle', () => {
+        if (card.open) {
+          cards.forEach(other => {
+            if (other !== card && other.open) {
+              other.open = false;
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
